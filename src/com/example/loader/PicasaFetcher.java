@@ -6,6 +6,7 @@ import java.net.URL;
 import android.util.Log;
 
 import com.google.gdata.client.photos.PicasawebService;
+import com.google.gdata.data.photos.AlbumFeed;
 import com.google.gdata.data.photos.UserFeed;
 import com.google.gdata.util.ServiceException;
 
@@ -33,13 +34,13 @@ public class PicasaFetcher {
 		return service.getFeed(feedUrl, UserFeed.class);		
 	}
 	
-	public UserFeed getPhotoFeed(String userName, String id) throws IOException, ServiceException
+	public AlbumFeed getPhotoFeed(String userName, String id) throws IOException, ServiceException
 	{
 		URL feedUrl;
 		feedUrl = new URL(baseUrl+"/"+userName+"/ablumid/"+id);
 		
 		Log.d("PicasaFetcher", "URL = " +feedUrl.toString());
 		
-		return service.getFeed(feedUrl, UserFeed.class);		
+		return service.getFeed(feedUrl, AlbumFeed.class);		
 	}
 }

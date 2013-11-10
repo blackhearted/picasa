@@ -9,6 +9,7 @@ public class PhotoActivity extends Activity {
 	
 	private String id;
 	private String userName;
+	private GetImageThumbnailsTask mt;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,9 @@ public class PhotoActivity extends Activity {
 	    .setTitle("Album ID")
 	    .setMessage( id + " : " + userName)	    
 	    .show();
+		
+		mt = new GetImageThumbnailsTask(this);		
+		mt.execute(userName, id);		
 	}
 	
 }
