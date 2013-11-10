@@ -82,7 +82,7 @@ class GetAlbumsTask extends
 	@Override
 	protected void onPostExecute(Void result) {			
 		Log.d(ASYNC_TASK_LOG_PREFIX, "onPostExecute...albums size = "+activity.albums.size());
-		//adapter.notifyDataSetChanged();
+		//adapter.notifyDataSetChanged();//??
 		activity.adapter.addAll(activity.albums);
     }
 }
