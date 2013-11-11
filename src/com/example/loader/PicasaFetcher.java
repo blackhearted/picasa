@@ -42,7 +42,7 @@ public class PicasaFetcher {
 		return getAlbums(jsonParser.getJSONFromUrl(feedUrl.toString()));		
 	}
 	
-	public HashMap<String, MyPhotoEntry> getPhotoFeed(String userName, String id) throws IOException, ServiceException
+	public ArrayList<MyPhotoEntry> getPhotoFeed(String userName, String id) throws IOException, ServiceException
 	{
 		URL feedUrl;
 		feedUrl = new URL(baseUrl+"/"+userName+"/albumid/"+id+"/?alt=json");
@@ -76,18 +76,9 @@ public class PicasaFetcher {
 		return ret;
 	}
 	
-	class MyPhotoEntry
+	private ArrayList<MyPhotoEntry> getPhotosProperties(JSONObject json)
 	{
-		String url_full;
-		String title;
-		String url_72;
-		String url_144;
-		String url_288;
-	}
-	
-	private HashMap<String, MyPhotoEntry> getPhotosProperties(JSONObject json)
-	{
-		HashMap<String, MyPhotoEntry> ret = new HashMap<String, MyPhotoEntry>();
+		ArrayList<MyPhotoEntry> ret = new ArrayList<MyPhotoEntry>();
 		
 		try {
 			JSONObject feed = json.getJSONObject("feed");
@@ -120,15 +111,16 @@ public class PicasaFetcher {
 					Log.d("PicasaFetcher", "got "+ mediaThumbnailArray.length() + " thumbnails...");
 					for(int i1=0; i1< mediaThumbnailArray.length(); ++i1)
 					{
-						String thumbUrl = mediaContentArray.getJSONObject(i1).getString("url");
+						String thumbUrl = mediaThumbnailArray.getJSONObject(i1).getString("url");
 						Log.d("PicasaFetcher", "thumb  -> "+ thumbUrl);
 					}
 				}
 				MyPhotoEntry photoEntry = new MyPhotoEntry();
 				photoEntry.title = title;
 				photoEntry.url_full = pictureUrl;
+				photoEntry.id = id;
 				
-				ret.put(id, photoEntry);
+				ret.add(photoEntry);
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

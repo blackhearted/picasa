@@ -32,20 +32,30 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int android_wrench=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int logo_breadcrumbz=0x7f020002;
+        public static final int right_on=0x7f020003;
+        public static final int slide_off=0x7f020004;
+        public static final int slide_on=0x7f020005;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f090002;
-        public static final int action_settings=0x7f090005;
+        public static final int action_settings=0x7f090009;
         public static final int buttonGet=0x7f090004;
         public static final int goButton=0x7f090001;
+        public static final int list=0x7f090005;
         public static final int listView=0x7f090003;
+        public static final int list_image=0x7f090007;
+        public static final int thumbnail=0x7f090006;
+        public static final int title=0x7f090008;
         public static final int userId=0x7f090000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int activity_main_fullscreen=0x7f030001;
         public static final int activity_photo=0x7f030002;
+        public static final int list_row=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f080000;
