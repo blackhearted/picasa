@@ -35,7 +35,7 @@
                 android:value="com.example.loader.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.loader.PhotoActivity"
+            android:name="com.example.loader.PhotoListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_photo"
             android:theme="@style/FullscreenTheme" >

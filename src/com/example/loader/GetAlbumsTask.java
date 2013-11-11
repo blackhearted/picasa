@@ -1,7 +1,14 @@
 package com.example.loader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -38,51 +45,24 @@ class GetAlbumsTask extends
 
 	@Override
 	protected Void doInBackground(String... arg) {
-		try {					
-			activity.albums = getIds( picasaFetcher.getAlbumFeed(arg[0], "album"));				
+		try {
+			HashMap<String, String> albumEntries = picasaFetcher.getAlbums(arg[0], "album");
+			activity.albums = albumEntries;
 			Log.d(ASYNC_TASK_LOG_PREFIX, "Got "+ activity.albums.size() + " albums");
 		} catch (Exception e) {
 			e.printStackTrace();
 			Log.d(ASYNC_TASK_LOG_PREFIX, "fail");
 		}
 		return null;
-	}
-
-	private String getIdFromEntry(GphotoEntry<?> entry) {
-		String entryID = entry.getId();
-		String id = null;
-		int idx = entryID.lastIndexOf("/");
-		if( idx != -1 && idx != entryID.length() - 1){
-			id = entryID.substring(idx+1);						
-		}
-		return id;
-	}
-	
-	private ArrayList<String> getIds(UserFeed feed)
-	{
-		ArrayList<String> ret = new ArrayList<String>();
-		Log.d(ASYNC_TASK_LOG_PREFIX, "Got "+ feed.getAlbumEntries().size() + " albums");
-		if (!feed.getAlbumEntries().isEmpty()){
-			for (AlbumEntry myAlbum : feed.getAlbumEntries()) {
-				ret.add(myAlbum.getTitle().getPlainText());
-			}
-		}
-		else if (!feed.getEntries().isEmpty()){
-			Log.d(ASYNC_TASK_LOG_PREFIX, "Got "+ feed.getEntries().size() + " photoIDs");
-			for (GphotoEntry<?> entry : feed.getEntries()) {
-				String id = getIdFromEntry(entry);
-				Log.d(ASYNC_TASK_LOG_PREFIX, "ID -> "+id);
-				if (id != null)
-					ret.add(id);
-			}
-		}
-		return ret;
-	}
+	}	
 	
 	@Override
 	protected void onPostExecute(Void result) {			
 		Log.d(ASYNC_TASK_LOG_PREFIX, "onPostExecute...albums size = "+activity.albums.size());
 		//adapter.notifyDataSetChanged();//??
-		activity.adapter.addAll(activity.albums);
+		for(String title: activity.albums.keySet())
+		{
+			activity.adapter.add(title);
+		}		
     }
 }

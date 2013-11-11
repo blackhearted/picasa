@@ -2,6 +2,7 @@ package com.example.loader;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -31,7 +32,7 @@ public class AlbumActivity extends Activity {
 	ListView listView;
 	
 	ArrayAdapter<String> adapter = null;
-	ArrayList<String> albums = new ArrayList<String>();
+	HashMap<String, String> albums = new HashMap<String, String>();
 	
 	GetAlbumsTask mt;
 	
@@ -54,7 +55,7 @@ public class AlbumActivity extends Activity {
 	    .setMessage( value)	    
 	    .show();	
 		
-		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, albums);
+		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 		listView = (ListView) findViewById(R.id.listView);
 		listView.setAdapter(adapter);
 		
@@ -68,9 +69,9 @@ public class AlbumActivity extends Activity {
 				
 				Log.d(LIST_CLICK_LOG_PREFIX, "Got "+ selectedFromList + " clicked");
 				
-				Intent intent = new Intent(AlbumActivity.this, PhotoActivity.class);
+				Intent intent = new Intent(AlbumActivity.this, PhotoListActivity.class);
 		    	intent.putExtra("User", userName);
-		    	intent.putExtra("ID", selectedFromList);
+		    	intent.putExtra("ID", albums.get(selectedFromList));
 		    	AlbumActivity.this.startActivity(intent);
 			}
 		});	
