@@ -37,7 +37,7 @@ public class PicasaFetcher {
 	public AlbumFeed getPhotoFeed(String userName, String id) throws IOException, ServiceException
 	{
 		URL feedUrl;
-		feedUrl = new URL(baseUrl+"/"+userName+"/ablumid/"+id);
+		feedUrl = new URL(baseUrl+"/"+userName+"/albumid/"+id);
 		
 		Log.d("PicasaFetcher", "URL = " +feedUrl.toString());
 		
