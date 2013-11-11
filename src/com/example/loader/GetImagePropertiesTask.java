@@ -28,7 +28,7 @@ class GetImagePropertiesTask extends
 		activity = photoActivity;
 	}
 
-	private static final String ASYNC_TASK_LOG_PREFIX = "thumb task";
+	private static final String ASYNC_TASK_LOG_PREFIX = "GetImagePropertiesTask";
 
 	@Override
 	protected void onPreExecute()

@@ -25,20 +25,24 @@ public class LazyAdapter extends BaseAdapter {
     public LazyAdapter(Activity a, ArrayList<MyPhotoEntry> d) {
     	Log.d("LazyAdapter", ".ctor ...");
         activity = a;
-        data=d;
+        setData(d);
+        Log.d("LazyAdapter", "data size = " + getData().size() + " ...");
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
         imageLoader=new ImageLoader(activity.getApplicationContext());
     }
  
     public int getCount() {
-        return data.size();
+    	Log.d("LazyAdapter", "getCount returns " + getData().size() + "...");
+        return getData().size();
     }
  
     public Object getItem(int position) {
+    	Log.d("LazyAdapter", "getItem ...");
         return position;
     }
  
     public long getItemId(int position) {
+    	Log.d("LazyAdapter", "getItemId ...");
         return position;
     }
  
@@ -52,7 +56,7 @@ public class LazyAdapter extends BaseAdapter {
         ImageView thumb_image=(ImageView)vi.findViewById(R.id.list_image); // thumb image
         
         MyPhotoEntry entry = new MyPhotoEntry();
-        entry = data.get(position);
+        entry = getData().get(position);
         
         Log.d("LazyAdapter", "entry title =" + entry.title + " entry url = " + entry.url_full + " ... ");
         
@@ -60,4 +64,14 @@ public class LazyAdapter extends BaseAdapter {
         imageLoader.DisplayImage(entry.url_full, thumb_image);
         return vi;
     }
+
+	public ArrayList<MyPhotoEntry> getData() {
+		Log.d("LazyAdapter", "getData ...");
+		return data;
+	}
+
+	public void setData(ArrayList<MyPhotoEntry> data) {
+		Log.d("LazyAdapter", "setData ...");
+		this.data = data;
+	}
 }

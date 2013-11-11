@@ -22,6 +22,7 @@ public class PhotoListActivity extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d("PhotoListActivity", "onCreate ...");
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_photo);	
@@ -30,6 +31,7 @@ public class PhotoListActivity extends Activity {
 	@Override
 	protected void onStart()
 	{
+		Log.d("PhotoListActivity", "onStart ...");
 		super.onStart();
 		
 		Intent intent = getIntent();
@@ -53,12 +55,15 @@ public class PhotoListActivity extends Activity {
 	}
 
 	public ArrayList<MyPhotoEntry> getPhotoProperties() {
+		Log.d("PhotoListActivity", "getPhotoProperties ...");
 		return photoProperties;
 	}
 
 	public void setPhotoProperties(ArrayList<MyPhotoEntry> photoProperties) {
-		Log.d("PhotoListActivity", "PhotoProperties updated...");
+		Log.d("PhotoListActivity", "setPhotoProperties ...");
 		this.photoProperties = photoProperties;
+		adapter.setData(this.photoProperties);
+		adapter.notifyDataSetChanged();
 	}
 	
 }
