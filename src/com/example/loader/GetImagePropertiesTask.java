@@ -2,12 +2,6 @@ package com.example.loader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.google.gdata.data.photos.AlbumEntry;
-import com.google.gdata.data.photos.AlbumFeed;
-import com.google.gdata.data.photos.GphotoEntry;
-import com.google.gdata.data.photos.PhotoEntry;
-import com.google.gdata.data.photos.UserFeed;
-
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;

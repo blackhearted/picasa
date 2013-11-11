@@ -16,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.loader.util.SystemUiHider;
-import com.google.gdata.util.ServiceException;
 
 
 /**
@@ -77,7 +76,7 @@ public class AlbumActivity extends Activity {
 		});	
 	}
 	
-	public void GetAlbumIds(View v) throws IOException, ServiceException
+	public void GetAlbumIds(View v) throws IOException
 	{	
 		mt = new GetAlbumsTask(this);		
 		mt.execute(userName);		

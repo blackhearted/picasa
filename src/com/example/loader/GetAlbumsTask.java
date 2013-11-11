@@ -12,10 +12,6 @@ import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.google.gdata.data.photos.AlbumEntry;
-import com.google.gdata.data.photos.GphotoEntry;
-import com.google.gdata.data.photos.UserFeed;
-
 class GetAlbumsTask extends
 		AsyncTask<String, Void, Void > {
 	/**

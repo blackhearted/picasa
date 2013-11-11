@@ -14,13 +14,6 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-import com.google.gdata.client.photos.PicasawebService;
-import com.google.gdata.data.photos.AlbumFeed;
-import com.google.gdata.data.photos.UserFeed;
-import com.google.gdata.util.ServiceException;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
 public class PicasaFetcher {
 	private String APPLICATION_NAME = "pure-feat-393";
 	
@@ -32,7 +25,7 @@ public class PicasaFetcher {
 		baseUrl = url;
 	}
 	
-	public HashMap<String, String> getAlbums(String userName, String kind) throws IOException, ServiceException, URISyntaxException, JSONException
+	public HashMap<String, String> getAlbums(String userName, String kind) throws IOException, URISyntaxException, JSONException
 	{
 		URL feedUrl;
 		feedUrl = new URL(baseUrl+"/"+userName+"?kind="+kind+"&access=public&alt=json");
@@ -42,7 +35,7 @@ public class PicasaFetcher {
 		return getAlbums(jsonParser.getJSONFromUrl(feedUrl.toString()));		
 	}
 	
-	public ArrayList<MyPhotoEntry> getPhotoFeed(String userName, String id) throws IOException, ServiceException
+	public ArrayList<MyPhotoEntry> getPhotoFeed(String userName, String id) throws IOException
 	{
 		URL feedUrl;
 		feedUrl = new URL(baseUrl+"/"+userName+"/albumid/"+id+"/?alt=json");
